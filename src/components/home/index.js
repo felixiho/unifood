@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';    
+import './home.css';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -20,7 +21,7 @@ function CenteredGrid(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container  >
+      <Grid container className="background"  >
         <Grid item xs={12}> 
             <h1>jams</h1>
         </Grid> 
