@@ -4,4 +4,16 @@
     height: 60vh;
     background-position: center;
     background-repeat: no-repeat; 
+    padding: 20px;
+}
+
+.logo{
+    width: 100px;
+}
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
 }
