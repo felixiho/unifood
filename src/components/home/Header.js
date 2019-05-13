@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'; 
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles'; 
 import logo from '../assets/unifood.png'
@@ -19,26 +18,26 @@ const styles = (theme) => ({
     padding: '6px 12px',
     border: '1px solid',
     lineHeight: 1.5,
-    backgroundColor: '#47695e',
-    borderColor: '#47695e',
+    backgroundColor: '#28483d',
+    borderColor: '#28483d',
     fontFamily: [ 
       'Nunito',
     'sans-serif',
     ].join(','),
     '&:hover': {
-      backgroundColor: '#28483d',
-      borderColor: '#28483d',
+      backgroundColor: '#193e31',
+      borderColor: '#193e31',
     },
     '&:active': {
       boxShadow: 'none',
-      backgroundColor: '#28483d',
-      borderColor: '#28483d',
+      backgroundColor: '#193e31',
+      borderColor: '#193e31',
     }
   }
 
 });
 
-function CenteredGrid(props) {
+function Header(props) {
   const { classes } = props;
 
   return ( 
@@ -59,10 +58,6 @@ function CenteredGrid(props) {
         </Grid>    
     </Grid>  
   );
-}
+} 
 
-CenteredGrid.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CenteredGrid);
+export default withStyles(styles)(Header);

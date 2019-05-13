@@ -1,0 +1,12 @@
+.search{
+    width: 50%;
+    padding: 2px 4px;
+    display: flex;
+    align-items: center; 
+}
+
+@media screen and (max-width: 768px) {
+    .search{
+        width: 90%;
+    }
+}
