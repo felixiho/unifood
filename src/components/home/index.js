@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';   
 import Header from './Header'; 
 import Search from './search';
+import Popular from './popular';
 import './home.css';
 
 const styles = theme => ({
@@ -34,6 +35,11 @@ function CenteredGrid(props) {
             </div> 
         </Grid> 
       </Grid>
+      <Grid item xs={12} className={classes.search}> 
+          <div className="searchParent">
+              <Popular  />
+          </div> 
+      </Grid> 
     </div>
   );
 }

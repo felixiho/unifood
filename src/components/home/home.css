@@ -28,4 +28,13 @@
     justify-content: center;
 }
 
+.header{
+    margin: 20px; 
+}
+
+@media screen and (max-width: 768px) {
+    .header{
+        text-align: center;
+    }
+}
  
