@@ -22,5 +22,9 @@ Note that the naming convention for branches are :
   
 ### ONLY STUDENT CONTRIBUTION ARE ALLOWED
  
+ 
+ ## Running
+ `npm install`
+ `yarn start`
 
  
