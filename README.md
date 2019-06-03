@@ -11,6 +11,8 @@ Thanks for the bold move.
 To contribute follow the steps on the link.
 
 PLEASE CHECKOUT FROM `dev` AS IT HAS THE CURRENT UPDATED VERSION 
+
+
 https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/
 
 Note that the naming convention for branches are :
