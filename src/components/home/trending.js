@@ -47,7 +47,7 @@ const Cards =  (props) => (
     
   <Col md={4}> 
       <Card className="cardHover" >
-        <CardImg top src="http://damiblog.com.ng/wp-content/uploads/2018/06/Philly4.jpeg" alt="event image" />
+        <CardImg   top src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY3fMpLiSpzJ0ugsh8jKSc5AkSiIGqr4P3RGDh1AzR5pEwL9wl" alt="Restaurant Image" />
         <CardBody className="notCardHover">
           <CardTitle><strong>Sakamnje</strong></CardTitle>
           <CardSubtitle>
