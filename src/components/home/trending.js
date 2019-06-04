@@ -1,7 +1,8 @@
 import React from 'react'; 
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle,  Row, Col } from 'reactstrap';   
-import './search.css'
+import './search.css';
+import Rank from '../general/rank';
 
 const styles = {}; 
 
@@ -49,10 +50,11 @@ const Cards =  (props) => (
       <Card className="cardHover" >
         <CardImg   top src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY3fMpLiSpzJ0ugsh8jKSc5AkSiIGqr4P3RGDh1AzR5pEwL9wl" alt="Restaurant Image" />
         <CardBody className="notCardHover">
-          <CardTitle><strong>Sakamnje</strong></CardTitle>
-          <CardSubtitle>
-            12 Feb
-          </CardSubtitle>
+          <CardTitle>
+            <strong>Salado</strong>
+            <Rank 
+              rank={32}/>  
+          </CardTitle> 
           <CardText style={{...styles.a }}>Unilag Lagos</CardText> 
         </CardBody>
       </Card> 
