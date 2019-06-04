@@ -5,4 +5,8 @@ body{
   font-family: 'Nunito', sans-serif;
   margin: 0px;
 } 
+
+a:hover{
+  text-decoration: none;
+}
  

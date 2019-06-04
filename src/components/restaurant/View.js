@@ -4,7 +4,7 @@ class ViewRestaurant extends Component {
     render() {
         return (
             <div>
-                dfadfad
+                 
             </div>
         );
     }
