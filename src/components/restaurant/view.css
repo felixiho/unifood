@@ -1,0 +1,18 @@
+.headerImage{
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.alignRank{
+    display: inline-block;
+}
+ .m-20{
+     margin : 20px auto;
+ }
+ .m-10{
+    margin : 10px auto;
+}
+ .row2{
+     padding-left: 10px;
+ }
