@@ -7,4 +7,9 @@
 .animated-rater svg {
     cursor: pointer;
 }
+
+.flexRate{
+    display: flex;
+    width: fit-content;
+}
   

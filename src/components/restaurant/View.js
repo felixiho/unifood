@@ -1,11 +1,12 @@
 import React, { Component } from 'react'; 
 import './view.css';
 import Button from '../general/Button';
-import Rank from '../general/rank';
+import Rank from '../general/Rank';
 import Rate from '../general/Rate/AnimatedRater';
+import Upload from '../general/Upload';
 import {
     Col,
-    Row, 
+    Row, Form, FormGroup, Label, Input, FormText
   } from "reactstrap";
 
 class ViewRestaurant extends Component {
@@ -15,7 +16,7 @@ class ViewRestaurant extends Component {
                 <Row>
                     <Col md={12} >
                         <img 
-                            src="https://images.unsplash.com/photo-1498579485796-98be3abc076e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+                            src="https://files.ofadaa.com/uploads/restaurant_cover_image/file/4155/header_the-harvest-lagos-2.jpg"
                             alt="restaurant"
                             className="headerImage"
                         />
@@ -110,14 +111,35 @@ const Main = () => {
             </Row>
             <Row>
                 <Col md="12">
-                <div>  
+                <Form>  
                     <h5> <strong>Write a Review</strong> </h5>
-                    <h6>
-                        Rate
-                    </h6>
-                    <Rate />
+                     
+                    <FormGroup>  
+                        <Label for="Rate"><strong>Rate</strong></Label>
+                        <Rate />
+                    </FormGroup>
 
-                </div>
+                    <FormGroup> 
+                        <Input 
+                            type="textarea" 
+                            name="review" 
+                            placeholder="Write about a personal experience in the restaurant. " 
+                            rows="6" 
+                        />
+                    </FormGroup>
+                    <FormGroup>  
+                        <Upload />
+                    </FormGroup>
+                    <FormGroup>  
+                         
+                        <Button
+                        float="left"
+                        title="Post Review"
+                    />
+                    </FormGroup>
+                    
+                    
+                </Form>
                 </Col>
             </Row>
         </React.Fragment>

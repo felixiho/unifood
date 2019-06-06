@@ -11,6 +11,7 @@ styles.button = {
 
 export default (props) => {
 const bstyle = props.float === "right" ? {float:'right'} : {float: 'left'};
-return <Button style={{...styles.button, ...bstyle }}>{ props.title }</Button>;
+const bwidth = props.width ? {width: props.width} : {width: 'fit-content'};
+return <Button style={{...styles.button, ...bstyle, ...bwidth }}>{ props.title }</Button>;
 
 };

@@ -90,7 +90,7 @@ export default class AnimatedRater extends Component {
           key={this.state.defaultStyles.filter(style => style.x === 1).length}
         >
           {interpolatingStyles => (
-            <Rater
+            <Rater className="flexRate"
               total={5}
               rating={this.state.rating}
               onRate={this.handleRate.bind(this)}

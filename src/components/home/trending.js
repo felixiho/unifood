@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardImg, CardText, CardBody, CardTitle, Row, Col } from 'reactstrap';   
 import './search.css';
-import Rank from '../general/rank'; 
+import Rank from '../general/Rank'; 
 import { Link }  from "@reach/router";
 
 const styles = {}; 
