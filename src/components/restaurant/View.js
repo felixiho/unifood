@@ -148,6 +148,8 @@ const Main = () => {
                     <h5> <strong>Reviews For Sir Chi Restaurant</strong> </h5> 
                 </div>
                 <Review />
+                <Review />
+                <Review />
             </div>
         </React.Fragment>
     );
@@ -157,10 +159,35 @@ const Main = () => {
 
 const Others = () => {
     return (
-        <div>
-            John
+        <div className="others">
+            <Row>
+                <Col md={12}>
+                    <div  >
+                        <h4 className="m0"> Similar Restaurants</h4>
+                        <hr className="m0"></hr>
+                    </div>
+                </Col>
+                <Similar />
+                <Similar />
+                <Similar />
+                <Similar />
+                <Similar />
+            </Row>
         </div>
     );
 };
+
+const Similar = () => {
+    return(
+        <a href="/" className="m-10 similar"> 
+            <img alt="restaurant" src="/images/boy.svg" className="similarImage" />  
+            <h5 className="similarName"> <strong>Shop 10(Glamore Bits) </strong> </h5>   
+            <Rank 
+                rank={3.2}
+             />
+             <hr className="m-10 lightLine"></hr>
+        </a>
+    )
+}
  
 export default ViewRestaurant;

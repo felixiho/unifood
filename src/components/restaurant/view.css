@@ -23,5 +23,31 @@
  .mb-20{
     margin-bottom: 20px;
  }
+.others{
+    height: 388px;
+}
+.m0{
+    margin: 0;
+}
+.similar{
+    width: 100%;
+    padding: 0 15px;
+    color: inherit
+}
 
-  
+.similarImage{
+    width: 50px;
+    background: bisque;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.similarName{
+    display: inline; 
+}
+ 
+
+.lightLine{
+    border-color: #c2d6c7;
+    opacity: .4;
+}
