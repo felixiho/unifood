@@ -5,6 +5,7 @@ import Rank from '../general/Rank';
 import Rate from '../general/Rate/AnimatedRater';
 import Upload from '../general/Upload';
 import Review from '../reviews/review';
+import Footer from '../footer/footer';
 import {
     Col,
     Row, Form, FormGroup, Label, Input
@@ -33,6 +34,7 @@ class ViewRestaurant extends Component {
                         </Row>
                     </Col>
                 </Row>
+                <Footer />
             </div>
         );
     }
