@@ -52,7 +52,7 @@ const parentSection ={
 
 
 function Upload(props) {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState([]); 
   const {getRootProps, getInputProps} = useDropzone({
     accept: 'image/*',
     onDrop: acceptedFiles => {

@@ -4,9 +4,10 @@ import Button from '../general/Button';
 import Rank from '../general/Rank';
 import Rate from '../general/Rate/AnimatedRater';
 import Upload from '../general/Upload';
+import Review from '../reviews/review';
 import {
     Col,
-    Row, Form, FormGroup, Label, Input, FormText
+    Row, Form, FormGroup, Label, Input
   } from "reactstrap";
 
 class ViewRestaurant extends Component {
@@ -142,9 +143,17 @@ const Main = () => {
                 </Form>
                 </Col>
             </Row>
+            <div className="mt-40 mb-20">  
+                <div> 
+                    <h5> <strong>Reviews For Sir Chi Restaurant</strong> </h5> 
+                </div>
+                <Review />
+            </div>
         </React.Fragment>
     );
 };
+
+
 
 const Others = () => {
     return (
