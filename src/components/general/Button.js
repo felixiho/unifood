@@ -9,9 +9,11 @@ styles.button = {
   marginRight: '10px'
 };
 
+
+
 export default (props) => {
 const bstyle = props.float === "right" ? {float:'right'} : {float: 'left'};
 const bwidth = props.width ? {width: props.width} : {width: 'fit-content'};
-return <Button style={{...styles.button, ...bstyle, ...bwidth }}>{ props.title }</Button>;
+return <Button onClick={props.handleClick} style={{...styles.button, ...bstyle, ...bwidth }}>{ props.title }</Button>;
 
 };
