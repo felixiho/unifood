@@ -1,7 +1,16 @@
+.backgroundParent{
+    margin:0;
+}
 .headerImage{
     max-width: 100%;
     width: 100%;
     margin-bottom: 40px;
+    object-fit: cover;
+    height: 400px;
+}
+
+.p-0{
+    padding: 0;
 }
 
 .alignRank{
@@ -22,10 +31,7 @@
  }
  .mb-20{
     margin-bottom: 20px;
- }
-.others{
-    height: 388px;
-}
+ } 
 .m0{
     margin: 0;
 }
@@ -50,4 +56,5 @@
 .lightLine{
     border-color: #c2d6c7;
     opacity: .4;
+    display: block;
 }

@@ -14,11 +14,11 @@ import {
 class ViewRestaurant extends Component {
     render() {
         return (
-            <div>
-                <Row>
-                    <Col md={12} >
+            <div >
+                <Row className="longRow">
+                    <Col md={12} className="p-0" >
                         <img 
-                            src="https://files.ofadaa.com/uploads/restaurant_cover_image/file/4155/header_the-harvest-lagos-2.jpg"
+                            src="/images/spag1.jpg"
                             alt="restaurant"
                             className="headerImage"
                         />
@@ -59,7 +59,7 @@ const Main = () => {
                         />
                     </div>
                 </Col>
-                <Col md="2" >
+                <Col md="2" className="m-10" >
                     <div className="alignRank">
                         <Rank 
                             rank={3.2}
@@ -161,7 +161,7 @@ const Main = () => {
 
 const Others = () => {
     return (
-        <div className="others">
+        <div>
             <Row>
                 <Col md={12}>
                     <div  >

@@ -7,7 +7,7 @@ import {
 
 const Footer = () => {
     return (
-        <Row className="footer">
+        <Row className="footer longRow">
             <Col>
                 CopyRight © 2019 UNIFOOD
             </Col>

@@ -21,3 +21,8 @@ hr{
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(88, 121, 37, 0.25);
 } 
+
+.longRow{ 
+  margin-left: 0 !important;
+  margin-right: 0 !important; 
+}
