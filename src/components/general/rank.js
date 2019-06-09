@@ -1,6 +1,6 @@
 import React from 'react';
 
-const rank = (props) => {
+const Rank = (props) => {
     return (
         <div style={style}>
             {props.rank}
@@ -18,4 +18,4 @@ const style = {
     float: 'right'
 };
 
-export default rank;
+export default Rank;

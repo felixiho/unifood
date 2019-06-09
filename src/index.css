@@ -5,4 +5,24 @@ body{
   font-family: 'Nunito', sans-serif;
   margin: 0px;
 } 
+
+a:hover{
+  text-decoration: none;
+}
  
+hr{
+  border-top: 1px solid rgba(0,0,0.4);
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #252e1b;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(88, 121, 37, 0.25);
+} 
+
+.longRow{ 
+  margin-left: 0 !important;
+  margin-right: 0 !important; 
+}

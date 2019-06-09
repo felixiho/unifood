@@ -1,8 +1,9 @@
 import React from 'react'; 
 import { withStyles } from '@material-ui/core/styles';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle,  Row, Col } from 'reactstrap';   
+import { Card, CardImg, CardText, CardBody, CardTitle, Row, Col } from 'reactstrap';   
 import './search.css';
-import Rank from '../general/rank';
+import Rank from '../general/Rank'; 
+import { Link }  from "@reach/router";
 
 const styles = {}; 
 
@@ -35,7 +36,7 @@ class Trending extends React.Component {
     return (
       <Row style={{...styles.parentMargin}}>
         <Cards />
-        <Cards />
+          <Cards /> 
         <Cards /> 
       </Row>
     );
@@ -47,17 +48,19 @@ class Trending extends React.Component {
 const Cards =  (props) => (
     
   <Col md={4}> 
+  <Link to="/restaurant/28182">
       <Card className="cardHover" >
         <CardImg   top src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY3fMpLiSpzJ0ugsh8jKSc5AkSiIGqr4P3RGDh1AzR5pEwL9wl" alt="Restaurant Image" />
         <CardBody className="notCardHover">
           <CardTitle>
             <strong>Salado</strong>
             <Rank 
-              rank={32}/>  
+              rank={4.2}/>  
           </CardTitle> 
           <CardText style={{...styles.a }}>Unilag Lagos</CardText> 
         </CardBody>
       </Card> 
+      </Link>
   </Col>
 );
 

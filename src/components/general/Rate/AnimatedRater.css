@@ -1,0 +1,15 @@
+.animated-rater {
+    transform: translateZ(0);
+}
+.animated-rater .react-rater > * {
+    margin-left: 1rem;
+}
+.animated-rater svg {
+    cursor: pointer;
+}
+
+.flexRate{
+    display: flex;
+    width: fit-content;
+}
+  
