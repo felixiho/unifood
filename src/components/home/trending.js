@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { withStyles } from '@material-ui/core/styles';
-import { Card, CardImg, CardText, CardBody, CardTitle, Row, Col } from 'reactstrap';   
+import { Card, CardImg, CardText, CardBody, CardTitle, Row, Col , Button} from 'reactstrap';   
 import './search.css';
 import Rank from '../general/Rank'; 
 import { Link }  from "@reach/router";
@@ -11,12 +11,12 @@ const styles = {};
 
 styles.margin1 = {
   marginTop: '20px',
-  marginBottom: '10px'
+  marginBottom: '10px' 
   
 };
 
 styles.parentMargin = {
-  margin: '0 auto'
+  margin: '0 auto', 
 }
  
 styles.a = {
@@ -56,7 +56,7 @@ class Trending extends React.Component {
   render() { 
     const {trending, loading} = this.state; 
     return ( 
-      <Row style={{...styles.parentMargin}}> 
+      <Row style={{...styles.parentMargin}} className="parentMargin"> 
         {
           loading ? (
             <div>Loading...</div>
@@ -66,7 +66,9 @@ class Trending extends React.Component {
             
           )
         }
-        
+        <Col md={12} style={{...styles.margin1}}>  
+          <Link to='/restaurants/all'> <b>View All restaurants </b></Link>
+        </Col>
       </Row>
     )
      
@@ -76,7 +78,7 @@ class Trending extends React.Component {
  
 
 const Cards =  (props) => ( 
-  <Col md={4}> 
+  <Col md={4} style={{...styles.margin1}}> 
     <Link to={`/restaurant/${props.trends._id}`}>
       <Card className="cardHover" >
         <CardImg top src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY3fMpLiSpzJ0ugsh8jKSc5AkSiIGqr4P3RGDh1AzR5pEwL9wl" alt="Restaurant Image" />

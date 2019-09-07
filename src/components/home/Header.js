@@ -12,10 +12,7 @@ function Header(props) {
         <Grid item xs={12} >   
             <div className= "left" >
                 <img src={logo} className="logo" alt="logo" />
-            </div> 
-            <div className=  "right"> 
-                 <CustomButton />
-            </div>
+            </div>  
         </Grid>    
     </Grid>  
   );
