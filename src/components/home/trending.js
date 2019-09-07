@@ -77,7 +77,7 @@ class Trending extends React.Component {
 
 const Cards =  (props) => ( 
   <Col md={4}> 
-    <Link to={"/restaurant/"+`${props.trends._id}`}>
+    <Link to={`/restaurant/${props.trends._id}`}>
       <Card className="cardHover" >
         <CardImg top src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY3fMpLiSpzJ0ugsh8jKSc5AkSiIGqr4P3RGDh1AzR5pEwL9wl" alt="Restaurant Image" />
         <CardBody className="notCardHover">
