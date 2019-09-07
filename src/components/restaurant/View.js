@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component, useRef, useEffect } from 'react'; 
 import './view.css';
 import Button from '../general/Button';
 import Rank from '../general/Rank';
@@ -41,6 +41,18 @@ class ViewRestaurant extends Component {
 }
  
 const Main = () => {
+    const rateRef = useRef(null);
+    const scrollToRef = (ref) => {
+        console.log(ref.current.offsetTop); //This is not working so I'm hardcoding 
+        window.scrollTo({top:793, behavior: "smooth"})
+    }     
+    const reviewsFromApi = [
+        {likeCount: 223, dislikeCount: 9, reviewer: "James Jod", date: "23 June 2019", review: "The food just dey sha"},
+        {likeCount: 23, dislikeCount: 1, reviewer: "James Bay", date: "23 June 2019", review: "The food just dey sha"},
+        {likeCount: 24, dislikeCount: 3239, reviewer: "James Bay", date: "23 June 2019", review: "The food just dey sha"},
+        {likeCount: 3, dislikeCount: 10, reviewer: "James Bay", date: "23 June 2019", review: "The food just dey sha"},
+        {likeCount: 0, dislikeCount: 9, reviewer: "James Bay", date: "23 June 2019", review: "The food just dey sha"}
+    ]
     return (
         <React.Fragment>
             <Row>
@@ -48,14 +60,16 @@ const Main = () => {
                     <div>
                         <h2> Sir Chi</h2>
                     </div>
-                    <div>
+                    <div> 
                         <Button
                             float="left"
-                            title="Review" 
-                        /> 
+                            title="Review"
+                            handleClick = {()=>scrollToRef(rateRef)} 
+                        />  
                         <Button
                             float="left"
                             title="Rate"
+                            handleClick = {()=>scrollToRef(rateRef)}
                         />
                     </div>
                 </Col>
@@ -113,9 +127,9 @@ const Main = () => {
                 </Col>
             </Row>
             <Row>
-                <Col md="12">
-                <Form>  
-                    <h5> <strong>Write a Review</strong> </h5>
+                <Col  md="12">
+                <Form >  
+                    <h5 ref={rateRef}> <strong>Write a Review</strong> </h5>
                      
                     <FormGroup>  
                         <Label for="Rate"><strong>Rate</strong></Label>
@@ -149,9 +163,17 @@ const Main = () => {
                 <div> 
                     <h5> <strong>Reviews For Sir Chi Restaurant</strong> </h5> 
                 </div>
-                <Review />
-                <Review />
-                <Review />
+                {
+                    reviewsFromApi.map(review => (
+                        <Review
+                            likeCount = {review.likeCount}
+                            dislikeCount = {review.dislikeCount}
+                            reviewer = {review.reviewer}
+                            date = {review.date}
+                            review = {review.review} 
+                        />
+                    ))
+                } 
             </div>
         </React.Fragment>
     );

@@ -5,6 +5,7 @@ import {
     Col,
     Row
   } from "reactstrap";
+import ReportModal from './reportModal';
  
   
   class Review extends Component {
@@ -12,8 +13,8 @@ import {
         super(props);
         this.state={
             like: false,
-            likeCount: 38,
-            dislikeCount: 338,
+            likeCount: props.likeCount,
+            dislikeCount: props.dislikeCount,
             dislike: false 
         }
         this.getImage = this.getImage.bind(this);
@@ -62,6 +63,11 @@ import {
         if(type === 'like') return !this.state.like ? "/images/like.svg?": "/images/liked.svg?";
         if(type === 'dislike') return !this.state.dislike ? "/images/dislike.svg?" : "/images/disliked.svg?"; 
     }
+
+    handleReportClick(e){
+        e.preventDefault();
+        
+    }
       
     render() {
         return (
@@ -70,15 +76,15 @@ import {
                     <Col md={12}>
                         <div>
                             <img alt="profile" src="/images/boy.svg"  className= "profileImage"/> 
-                            <h6 className="profileName">Jam Afolabi</h6> 
+                            <h6 className="profileName">{this.props.reviewer}</h6> 
                             <Rank
                                 rank="3.2" />
                         </div>  
                     </Col>
                     <Col md={12}>
                         <div> 
-                            <span className="reviewDate">12 Sep 2019</span>  
-                            <h6 className="review"> The food was quite empty. Environment was dirty as fuck and staff were rude</h6>
+                            <span className="reviewDate">{this.props.date}</span>  
+                            <h6 className="review"> {this.props.review}</h6>
                         </div>  
                     </Col> 
                     <Col md={12}>
@@ -93,15 +99,24 @@ import {
                             </button>  
                             <span className="reactionCount">{this.state.likeCount}</span>
 
-                            <span className="reviewDate right">
-                            <a href="/">Report</a> 
+                            <span className="reviewDate right"> 
+                                <ReportModal 
+                                    modal= {false}
+                                    nestedModal= {false}
+                                    closeAll= {false}
+                                /> 
+                            
                             </span>   
                         </div>  
                     </Col>
                 </Row>
+                
             </div> 
+
         );
     }
+
+    
 }
   
    
