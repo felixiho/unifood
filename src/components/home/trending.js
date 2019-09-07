@@ -4,6 +4,8 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Row, Col } from 'reactstr
 import './search.css';
 import Rank from '../general/Rank'; 
 import { Link }  from "@reach/router";
+import { getTrending } from '../../api/index.js';
+
 
 const styles = {}; 
 
@@ -29,35 +31,62 @@ styles.viewMore = {
 
 
 class Trending extends React.Component { 
- 
-
+  constructor(props){
+    super(props);
+    this.state = {
+      trending : [],
+      loading: true
+    }
+  }
+  
+  componentDidMount() {
+    
+    getTrending()
+      .then( response => {   
+        this.setState({
+          trending: response,
+          loading: false
+        }); 
+      })
+      .catch( error => {
+        console.log(error);
+      })
+  }
+  
   render() { 
-
-    return (
-      <Row style={{...styles.parentMargin}}>
-        <Cards />
-          <Cards /> 
-        <Cards /> 
+    const {trending, loading} = this.state; 
+    return ( 
+      <Row style={{...styles.parentMargin}}> 
+        {
+          loading ? (
+            <div>Loading...</div>
+          ) : (
+            
+            trending.map( trends => <Cards key={trends._id} trends={trends} />)
+            
+          )
+        }
+        
       </Row>
-    );
+    )
+     
   }
 }
 
  
 
-const Cards =  (props) => (
-    
+const Cards =  (props) => ( 
   <Col md={4}> 
-  <Link to="/restaurant/28182">
+    <Link to={"/restaurant/"+`${props.trends._id}`}>
       <Card className="cardHover" >
-        <CardImg   top src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY3fMpLiSpzJ0ugsh8jKSc5AkSiIGqr4P3RGDh1AzR5pEwL9wl" alt="Restaurant Image" />
+        <CardImg top src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY3fMpLiSpzJ0ugsh8jKSc5AkSiIGqr4P3RGDh1AzR5pEwL9wl" alt="Restaurant Image" />
         <CardBody className="notCardHover">
           <CardTitle>
-            <strong>Salado</strong>
+            <strong>{props.trends.name}</strong>
             <Rank 
-              rank={4.2}/>  
+              rank={props.trends.rating}/>  
           </CardTitle> 
-          <CardText style={{...styles.a }}>Unilag Lagos</CardText> 
+          <CardText style={{...styles.a }}>{props.trends.location}</CardText> 
         </CardBody>
       </Card> 
       </Link>
