@@ -17,8 +17,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: "center",
     color: theme.palette.text.secondary
-  },
-  search: {}
+  }, 
 });
 
 function CenteredGrid(props) {
@@ -31,14 +30,15 @@ function CenteredGrid(props) {
         <Grid container className="background">
           <Grid item xs={12}>
             <Header />
-          </Grid>
+          </Grid> 
           <Grid item xs={12}   className={classes.search}>
+          <h3 className="findthebest">Find the best restaurants in Unilag</h3>
             <div className="searchParent">
               <Search />
             </div>
           </Grid>
         </Grid>
-        <Grid item xs={12}    className={classes.search}>
+        <Grid item xs={12} className="trending" >
           <div className="searchParent">
             <Title
               title="Trending Restaurants"
@@ -47,7 +47,7 @@ function CenteredGrid(props) {
         </Grid> 
         <Trending />
 
-        <Grid item xs={12}    className={classes.search}>
+        <Grid item xs={12}  className="categories pt-10"   >
           <div className="searchParent">
             <Title
               title="Categories"

@@ -6,12 +6,33 @@ import Rate from '../general/Rate/AnimatedRater';
 import Upload from '../general/Upload';
 import Review from '../reviews/review';
 import Footer from '../footer/footer';
+import { getRestaurant} from "../../api/restaurants.js";
 import {
     Col,
     Row, Form, FormGroup, Label, Input
   } from "reactstrap";
 
 class ViewRestaurant extends Component {
+    constructor(props){
+        super(props);
+        let queryArray = this.props.location.pathname.split("/"); 
+        this.state = {
+            id: queryArray[queryArray.length-1],
+            restaurant:[]
+        }
+    }
+    componentDidMount(){
+ 
+        getRestaurant(this.state.id)
+            .then(response => {
+                console.log(response)
+                this.setState({ restaurant: response });
+            })
+            .catch(error => {
+                //redirect to error page
+                console.log(error);
+            })
+    }
     render() {
         return (
             <div >
@@ -26,7 +47,9 @@ class ViewRestaurant extends Component {
                     <Col md={{ size: 10, offset: 1 }}>
                         <Row>
                             <Col md="8" >
-                                <Main /> 
+                                <Main 
+                                    restaurant={this.state.restaurant}    
+                                /> 
                             </Col>
                             <Col md="4">
                                 <Others />
@@ -40,8 +63,9 @@ class ViewRestaurant extends Component {
     }
 }
  
-const Main = () => {
+const Main = (props) => {
     const rateRef = useRef(null);
+    const restaurant = props.restaurant;
     const scrollToRef = (ref) => {
         console.log(ref.current.offsetTop); //This is not working so I'm hardcoding 
         window.scrollTo({top:793, behavior: "smooth"})
@@ -58,7 +82,7 @@ const Main = () => {
             <Row>
                 <Col md="10" >
                     <div>
-                        <h2> Sir Chi</h2>
+                        <h2> {restaurant.name}</h2>
                     </div>
                     <div> 
                         <Button
@@ -76,7 +100,7 @@ const Main = () => {
                 <Col md="2" className="m-10" >
                     <div className="alignRank">
                         <Rank 
-                            rank={3.2}
+                            rank={restaurant.rating}
                         />
                     </div>
                     <div> 

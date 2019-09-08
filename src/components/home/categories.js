@@ -6,7 +6,10 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import './search.css'
 
 const styles = {}; 
-
+styles.parent = {
+  backgroundColor: '#f2f2f2',
+  marginTop: '-10px' 
+}
 styles.margin1 = {
   marginTop: '20px',
   marginBottom: '10px'
@@ -23,7 +26,7 @@ styles.owl = {
 export default class Categories extends Component {
   render() {
     return (
-      <div> 
+      <div style={{...styles.parent }} className="parentMargin">  
 
          <Row style={{...styles.margin }} >
          <OwlCarousel 
