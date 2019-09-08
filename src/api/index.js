@@ -4,7 +4,7 @@ const apiUrl = process.env.NODE_ENV === "development" ?
             
 
 /**
- * @param 
+ * @function getTrending 
  * @returns {JSON} response
  * @desc Returns the trending restaurants
  */
