@@ -6,7 +6,7 @@ import Rate from '../general/Rate/AnimatedRater';
 import Upload from '../general/Upload';
 import Review from '../reviews/review';
 import Footer from '../footer/footer';
-import { getRestaurant} from "../../api/restaurants.js";
+import { getRestaurant, getRateCount } from "../../api/restaurants.js";
 import {
     Col,
     Row, Form, FormGroup, Label, Input
@@ -18,15 +18,20 @@ class ViewRestaurant extends Component {
         let queryArray = this.props.location.pathname.split("/"); 
         this.state = {
             id: queryArray[queryArray.length-1],
+            rateCount: 0,
             restaurant:[]
         }
     }
     componentDidMount(){
- 
-        getRestaurant(this.state.id)
-            .then(response => {
-                console.log(response)
-                this.setState({ restaurant: response });
+        /**
+        *Todo: Add a loader while promise is pending
+         */
+        Promise.all([getRestaurant(this.state.id), getRateCount(this.state.id) ])
+            .then(([restaurant, rateCount]) => { 
+                this.setState({
+                    restaurant: restaurant,
+                    rateCount: rateCount
+                })
             })
             .catch(error => {
                 //redirect to error page
@@ -48,7 +53,8 @@ class ViewRestaurant extends Component {
                         <Row>
                             <Col md="8" >
                                 <Main 
-                                    restaurant={this.state.restaurant}    
+                                    restaurant={this.state.restaurant}
+                                    rate={this.state.rateCount}   
                                 /> 
                             </Col>
                             <Col md="4">
@@ -65,9 +71,8 @@ class ViewRestaurant extends Component {
  
 const Main = (props) => {
     const rateRef = useRef(null);
-    const restaurant = props.restaurant;
-    const scrollToRef = (ref) => {
-        console.log(ref.current.offsetTop); //This is not working so I'm hardcoding 
+    const restaurant = props.restaurant; 
+    const scrollToRef = (ref) => { 
         window.scrollTo({top:793, behavior: "smooth"})
     }     
     const reviewsFromApi = [
@@ -104,7 +109,7 @@ const Main = (props) => {
                         />
                     </div>
                     <div> 
-                        <span> 43 Votes  </span>
+                        <span> {props.rate.ratecount} Votes </span>
                     </div>
                 </Col>
             </Row>
@@ -115,72 +120,87 @@ const Main = (props) => {
                         <h5> <strong>Contact</strong> </h5> 
                     </div>
                     <div className="m-10" >
-                        <h6>+2389092201</h6>
-                        <h6>
-                            Block 26, Plot 10 Admiralty way, The Bridge Apartment, Lekki Phase 1, Lagos
-                        </h6>
+                       
+                        {
+                            restaurant.phone && 
+                                restaurant.phone.map( phone => 
+                                    <h6>{phone}</h6> 
+                                )
+                        } 
+                        <br />
+                        <h6>{restaurant.address}</h6>
+                        <h6>{restaurant.location}</h6>
                     </div>
                     <div className=" " >
                         <h5> <strong>Description</strong> </h5>
-                        <h6>
-                            Here a litle description of the restaurant is displayed.
-                            Like their major dishes. How affordable it is. POS options .You know 
-                        </h6>
+                        <h6>{restaurant.description}</h6>
                     </div>
                 </Col>
                 <Col md="6" className="row2"> 
                     <div>  
                         <h5> <strong>Opening Hours</strong> </h5>
-                        <h6>
-                            Mon-Fri 10am - 11pm
-                        </h6>
+                        {
+                            restaurant.openingHours && 
+                                restaurant.openingHours.map( openHour => 
+                                    <h6>{openHour}</h6> 
+                                )
+                        }  
                     </div>
                     <div className="m-20">  
-                        <h5> <strong>Most Popular Dish</strong> </h5>
+                        <h5> <strong>Most Popular Dish</strong> </h5> 
                         <h6>
-                            Spaghetti
+                             {
+                            restaurant.popularDish && 
+                                restaurant.popularDish.map( (popular, i, dishes) => 
+                                   <span> {popular}{ i < dishes.length - 1  && ","} </span>
+                                )
+                        } 
                         </h6>
                     </div>
                     <div className="m-20">  
                         <h5> <strong>Menu</strong> </h5>
                         <h6>
-                            Spaghetti, Beans, Bread, Yam and Egg, Jollof, Ofada, White Rice,
-                            Jollof Spaghetti
+                             {
+                            restaurant.menu && 
+                                restaurant.menu.map( (menu, i, menus) => 
+                                   <span> {menu}{ i < menus.length - 1 && ","} </span>
+                                )
+                        } 
                         </h6>
                     </div>
                 </Col>
             </Row>
             <Row>
                 <Col  md="12">
-                <Form >  
-                    <h5 ref={rateRef}> <strong>Write a Review</strong> </h5>
-                     
-                    <FormGroup>  
-                        <Label for="Rate"><strong>Rate</strong></Label>
-                        <Rate />
-                    </FormGroup>
+                    <Form >  
+                        <h5 ref={rateRef}> <strong>Write a Review</strong> </h5>
+                        
+                        <FormGroup>  
+                            <Label for="Rate"><strong>Rate</strong></Label>
+                            <Rate />
+                        </FormGroup>
 
-                    <FormGroup> 
-                        <Input 
-                            type="textarea" 
-                            name="review" 
-                            placeholder="Write about a personal experience in the restaurant. " 
-                            rows="6" 
+                        <FormGroup> 
+                            <Input 
+                                type="textarea" 
+                                name="review" 
+                                placeholder="Write about a personal experience in the restaurant. " 
+                                rows="6" 
+                            />
+                        </FormGroup>
+                        <FormGroup>  
+                            <Upload />
+                        </FormGroup>
+                        <FormGroup>  
+                            
+                            <Button
+                            float="left"
+                            title="Post Review"
                         />
-                    </FormGroup>
-                    <FormGroup>  
-                        <Upload />
-                    </FormGroup>
-                    <FormGroup>  
-                         
-                        <Button
-                        float="left"
-                        title="Post Review"
-                    />
-                    </FormGroup>
-                    
-                    
-                </Form>
+                        </FormGroup>
+                        
+                        
+                    </Form>
                 </Col>
             </Row>
             <div className="mt-40 mb-20">  
