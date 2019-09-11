@@ -7,6 +7,7 @@ import Upload from '../general/Upload';
 import Review from '../reviews/review';
 import Footer from '../footer/footer';
 import { getRestaurant, getRateCount } from "../../api/restaurants.js";
+import { getReviews } from "../../api/reviews.js";
 import {
     Col,
     Row, Form, FormGroup, Label, Input
@@ -19,18 +20,21 @@ class ViewRestaurant extends Component {
         this.state = {
             id: queryArray[queryArray.length-1],
             rateCount: 0,
-            restaurant:[]
+            restaurant:[],
+            reviews: []
         }
     }
     componentDidMount(){
         /**
         *Todo: Add a loader while promise is pending
          */
-        Promise.all([getRestaurant(this.state.id), getRateCount(this.state.id) ])
-            .then(([restaurant, rateCount]) => { 
+        Promise.all([getRestaurant(this.state.id), getRateCount(this.state.id), getReviews(this.state.id) ])
+            .then(([restaurant, rateCount, reviews]) => { 
+                //console.log(reviews);
                 this.setState({
                     restaurant: restaurant,
-                    rateCount: rateCount
+                    rateCount: rateCount,
+                    reviews: reviews
                 })
             })
             .catch(error => {
@@ -55,6 +59,7 @@ class ViewRestaurant extends Component {
                                 <Main 
                                     restaurant={this.state.restaurant}
                                     rate={this.state.rateCount}   
+                                    reviews={this.state.reviews}
                                 /> 
                             </Col>
                             <Col md="4">
@@ -74,14 +79,8 @@ const Main = (props) => {
     const restaurant = props.restaurant; 
     const scrollToRef = (ref) => { 
         window.scrollTo({top:793, behavior: "smooth"})
-    }     
-    const reviewsFromApi = [
-        {likeCount: 223, dislikeCount: 9, reviewer: "James Jod", date: "23 June 2019", review: "The food just dey sha"},
-        {likeCount: 23, dislikeCount: 1, reviewer: "James Bay", date: "23 June 2019", review: "The food just dey sha"},
-        {likeCount: 24, dislikeCount: 3239, reviewer: "James Bay", date: "23 June 2019", review: "The food just dey sha"},
-        {likeCount: 3, dislikeCount: 10, reviewer: "James Bay", date: "23 June 2019", review: "The food just dey sha"},
-        {likeCount: 0, dislikeCount: 9, reviewer: "James Bay", date: "23 June 2019", review: "The food just dey sha"}
-    ]
+    } 
+    const reviewsFromApi = props.reviews;
     return (
         <React.Fragment>
             <Row>
@@ -205,16 +204,20 @@ const Main = (props) => {
             </Row>
             <div className="mt-40 mb-20">  
                 <div> 
-                    <h5> <strong>Reviews For Sir Chi Restaurant</strong> </h5> 
+                    <h5> <strong>Reviews For {restaurant.name}</strong> </h5> 
                 </div>
                 {
-                    reviewsFromApi.map(review => (
+                    reviewsFromApi.map(review => ( 
+                        review.comment &&
                         <Review
-                            likeCount = {review.likeCount}
-                            dislikeCount = {review.dislikeCount}
-                            reviewer = {review.reviewer}
-                            date = {review.date}
-                            review = {review.review} 
+                            likeCount = {review.upvotes}
+                            dislikeCount = {review.downvotes}
+                            reviewer = {review.name}
+                            date = {review.createdAt}
+                            review = {review.comment} 
+                            rank={review.rate}
+                            key={review._id}
+                            id={review._id}
                         />
                     ))
                 } 

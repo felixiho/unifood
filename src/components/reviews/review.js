@@ -6,6 +6,7 @@ import {
     Row
   } from "reactstrap";
 import ReportModal from './reportModal';
+import { handleComment, } from "../../api/reviews.js";
  
   
   class Review extends Component {
@@ -15,13 +16,20 @@ import ReportModal from './reportModal';
             like: false,
             likeCount: props.likeCount,
             dislikeCount: props.dislikeCount,
-            dislike: false 
+            dislike: false,
+            id:props.id
         }
         this.getImage = this.getImage.bind(this);
     }
+    componentDidMount(){ 
+    }
 
-    handleReaction(type){   
-        if(type === 'dislike') { 
+    handleReaction(type){    
+        handleComment(type, this.state.id)
+            .then(data => {
+                this.setState({[type]: data.updatedComment[type]})
+            })
+        if(type === 'downvotes') { 
             if(this.state.like){
                 this.setState( prevState => ({ 
                     like: !prevState.like, 
@@ -38,7 +46,7 @@ import ReportModal from './reportModal';
             }) );  
             return;
         }
-        if(type === 'like') {
+        if(type === 'upvotes') {
             if(this.state.dislike){
                 this.setState( prevState => ({ 
                     dislike: !prevState.dislike, 
@@ -55,7 +63,6 @@ import ReportModal from './reportModal';
             }) );
             return;
         }
-        
     }
  
 
@@ -70,6 +77,7 @@ import ReportModal from './reportModal';
     }
       
     render() {
+        //this.setState({id: this.props.key})
         return (
             <div className="reviewCard">  
                 <Row>
@@ -78,7 +86,7 @@ import ReportModal from './reportModal';
                             <img alt="profile" src="/images/boy.svg"  className= "profileImage"/> 
                             <h6 className="profileName">{this.props.reviewer}</h6> 
                             <Rank
-                                rank="3.2" />
+                                rank={this.props.rank} />
                         </div>  
                     </Col>
                     <Col md={12}>
@@ -89,12 +97,12 @@ import ReportModal from './reportModal';
                     </Col> 
                     <Col md={12}>
                         <div className="mt-20">   
-                            <button className="reactionButton" onClick={e => this.handleReaction('dislike')}>
+                            <button className="reactionButton" onClick={e => this.handleReaction('downvotes')}>
                                 <img alt="Dislike" src={this.getImage('dislike')}  className="reactionImage"/>
                             </button> 
                             <span className="reactionCount">{this.state.dislikeCount}</span>
 
-                            <button className="reactionButton" onClick={e => this.handleReaction('like')}>
+                            <button className="reactionButton" onClick={e => this.handleReaction('upvotes')}>
                                 <img alt="Like" src={this.getImage('like')}  className="reactionImage"/>
                             </button>  
                             <span className="reactionCount">{this.state.likeCount}</span>
